@@ -1,0 +1,10 @@
+{ "name" : "stp",
+  "version" : "0.0.1",
+  "description" : "",
+  "main" : "index.js",
+  "dependencies": {
+     "body-parser": "latest",
+     "express"    : "latest",
+     "socket.io"  : "latest"
+ }
+}

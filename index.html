@@ -1,0 +1,15 @@
+<html>
+   <head>
+      <title>Let the dataflow begin</title>
+   </head>
+   <body>
+      <h1>Let the dataflow begin</h1>
+      <script src="/socket.io/socket.io.js"></script>
+      <script>
+        var socket = io();
+        socket.on('pushed', function (data) {
+           console.log("Your posted object data: ", data);
+        });
+      </script>
+   </body>
+</html>
