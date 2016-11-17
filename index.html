@@ -368,11 +368,18 @@
         var socket = io();
         socket.on('pushed', function (data) {
            console.log("Your posted object data: ", data);
+           if (data.fivehundreds > 2) {
+             app.ms_mode = 'minor';
+             app.player.arp_repeat = 1;
+          } else {
+             app.ms_mode = 'locrian';
+             app.player.arp_repeat = 2;
+          }
             Array.prototype.splice.apply(app.chords, [0, data.chordsNumbers.length].concat(data.chordsNumbers));
             app.ap_steps = data.arpsteps;
             app.arpeggio = data.arpeggioArray;
-            app.fx.distortion.wet.value = app.chords.length / 10;
-            app.fx.reverb.wet.value = (app.chords.length - 0.1) / 10;
+            app.fx.distortion.wet.value = data.payload.length / 10;
+            app.fx.reverb.wet.value = (data.payload.length - 0.1) / 10;
             app._setArpeggioPatterns();
             app._updateChords();
             app._updateOutput();

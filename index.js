@@ -15,12 +15,18 @@
    app.use(express.static(__dirname + '/public'));
 
    app.post('/push', function (req, res) {
-      
+
       if (req.body && req.body.length > 0) {
 
          let arpsteps = 3;
 
+         let fivehundreds = 0;
+
          let arpeggioArray = [];
+
+
+
+
 
          let payload = req.body.map(function (pItem) {
             let fnumber = parseInt(pItem.size.toString().charAt(0));
@@ -40,6 +46,10 @@
             arpsteps = 6;
          }
 
+         fivehundreds = payload.reduce(function (prev, next) {
+            return (prev === 500 ? 1 : 0) + (next === 500 ? 1 : 0);
+         });
+
          let arpNode = arpsteps - 1;
 
          let chordsNumbers = payload.map(function (pItem) {
@@ -54,7 +64,7 @@
             }
          }
 
-         let resultObject = { chordsNumbers, payload, arpsteps, arpeggioArray };
+         let resultObject = { chordsNumbers, payload, arpsteps, arpeggioArray, fivehundreds };
 
          io.sockets.emit('pushed', resultObject);
       }
