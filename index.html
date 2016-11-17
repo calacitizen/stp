@@ -362,7 +362,6 @@
       <script src="../tuna.js"></script>
       <script src="../babel.min.js"></script>
       <script type="text/babel" src="../client.js"></script>
-
       <script src="/socket.io/socket.io.js"></script>
 
       <script>
@@ -371,6 +370,9 @@
            console.log("Your posted object data: ", data);
             Array.prototype.splice.apply(app.chords, [0, data.chordsNumbers.length].concat(data.chordsNumbers));
             app.ap_steps = data.arpsteps;
+            app.arpeggio = data.arpeggioArray;
+            app.fx.distortion.wet.value = app.chords.length / 10;
+            app.fx.reverb.wet.value = (app.chords.length - 0.1) / 10;
             app._setArpeggioPatterns();
             app._updateChords();
             app._updateOutput();
