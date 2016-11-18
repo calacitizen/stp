@@ -368,13 +368,21 @@
         var socket = io();
         socket.on('pushed', function (data) {
            console.log("Your posted object data: ", data);
+
+
            if (data.fivehundreds > 2) {
-             app.ms_mode = 'minor';
-             app.player.arp_repeat = 1;
-          } else {
-             app.ms_mode = 'locrian';
-             app.player.arp_repeat = 2;
-          }
+             console.log('500');
+                app.ms_mode = 'minor';
+                app.player.arp_repeat = 1;
+             } else {
+                app.ms_mode = 'locrian';
+                app.player.arp_repeat = 2;
+             }
+
+            if (!app.player.playing) {
+               app.playerToggle();
+            }
+
             Array.prototype.splice.apply(app.chords, [0, data.chordsNumbers.length].concat(data.chordsNumbers));
             app.ap_steps = data.arpsteps;
             app.arpeggio = data.arpeggioArray;
