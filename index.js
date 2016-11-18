@@ -76,6 +76,10 @@
      res.sendfile('index.html');
    });
 
+   app.get('/agregator', function(req, res){
+     res.sendfile('agregator.html');
+   });
+
    io.on('connection', function(socket){
      console.log('Connection created');
    });

@@ -361,11 +361,11 @@ class ArpPlayer {
     this._loadSynths();
     this._loadTransport();
 
-   //  // change tabs, pause player
-   //  document.addEventListener('visibilitychange', () => {
-   //    this.player.playing = true;
-   //    this.playerToggle();
-   //  });
+    // change tabs, pause player
+    document.addEventListener('visibilitychange', () => {
+      this.player.playing = true;
+      this.playerToggle();
+    });
 
     console.log(this.MS);
   };
@@ -672,18 +672,18 @@ class ArpPlayer {
     // Arpeggio styles html
 
 
-   //  let title = document.createElement('h1');
-   //  title.innerHTML = 'Arpeggio Style';
-   //  this.pattern_container.appendChild(title);
-   //  this.AP.patterns[this.ap_pattern_type].forEach((pattern, i) => {
-   //    let el = document.createElement('div');
-   //    el.setAttribute('data-value', i);
-   //    if(i === this.ap_pattern_id) el.classList.add('id-current');
-   //    el.innerHTML = pattern.join('');
-   //    el.appendChild(this._genPatternSvg(pattern));
-   //    el.addEventListener('click', (e) => { this.apUpdatePatternId(e); });
-   //    this.pattern_container.appendChild(el);
-   //  });
+    let title = document.createElement('h1');
+    title.innerHTML = 'Arpeggio Style';
+    this.pattern_container.appendChild(title);
+    this.AP.patterns[this.ap_pattern_type].forEach((pattern, i) => {
+      let el = document.createElement('div');
+      el.setAttribute('data-value', i);
+      if(i === this.ap_pattern_id) el.classList.add('id-current');
+      el.innerHTML = pattern.join('');
+      el.appendChild(this._genPatternSvg(pattern));
+      el.addEventListener('click', (e) => { this.apUpdatePatternId(e); });
+      this.pattern_container.appendChild(el);
+    });
   };
 
   _genPatternSvg(pattern) {
